@@ -1,0 +1,22 @@
+version: '3'
+    
+services:
+  m1mac-python-container:
+    restart: always
+    image: m1mac_python_container:latest
+    container_name: m1mac_python_container
+    build: .
+    stdin_open: true
+    tty: true
+    ports:
+      # ssh
+      - "20021:22"
+      # tensorboard
+      - "6006:6006"
+      # jupyterlab
+      - "18888:8888"
+    # environment:
+    #   - TZ: Asia/Tokyo
+    volumes:
+      - ./work:/work
+    command: pwd
